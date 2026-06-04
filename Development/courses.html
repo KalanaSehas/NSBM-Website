@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NSBM Courses</title>
+        <link rel="stylesheet" href="courses.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+         Updated to fixed white navbar structure 
+        <header>
+            <nav>
+                <a href="Web assignment.html" class="logo"><img src="logo.png" alt="NSBM Logo"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="Web assignment.html">HOME</a></li>
+                        <li><a href="about us.html">ABOUT US</a></li>
+                        <li><a href="courses.html">COURSES</a></li>
+                        <li><a href="facilities.html">FACILITIES</a></li>
+                        <li><a href="faculties.html">FACULTIES</a></li>
+                        <li><a href="contact us.html">CONTACT US</a></li>
+                        <li><a href="login.html">LOGIN</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <section class="header">
+            <div class="text-box">
+                <h1>Courses We Offer</h1>
+                <p>NSBM Green University, a pioneering institution in Sri Lanka, stands at the forefront of
+                     environmental consciousness and sustainable education. 
+                    <br>With a strong commitment to promoting eco-friendly practices and fostering a 
+                    green mindset, <br>NSBM offers an array of courses that combine 
+                    academic excellence with environmental stewardship.</p>
+
+                <div class="row">
+                    <div class="course-col">
+                        <u><h3>FOUNDATION</h3></u>
+                        <p>The Foundation Programme for Bachelor's Degree is designed to provide participants with a 
+                            sound knowledge and skills for progression to undergraduate programmes at the National School 
+                            of Business Management (NSBM). This programme enables participants to gain essential subject 
+                            knowledge and skills to progress with further studies in a variety of degree programmes offered by NSBM.</p>
+                    </div>
+
+                    <div class="course-col">
+                        <u><h3>UNDERGRADUATE</h3></u>
+                        <p>The undergraduate courses at NSBM Green University are tailored to nurture critical thinking, creativity, and problem-solving skills, enabling students to excel in their chosen fields. Through cutting-edge curriculum, state-of-the-art facilities, and experienced faculty, the university ensures a transformative learning experience that empowers graduates to become responsible global citizens, equipped to address the challenges of the future with a focus on sustainability and ethical practices.</p>
+                    </div>
+
+                    <div class="course-col">
+                        <u><h3>POSTGRADUATE</h3></u>
+                        <p>Established under the purview of the Ministry of Education, NSBM offers a plethora of exciting and intellectually enhancing programmes via the Faculty of Postgraduate Studies and Professional Advancement. The range of courses consists of Certificate, Advanced Certificate, and Diploma level programmes, which lead to Postgraduate Diplomas and MBA programmes approved by the University Grants Commission (UGC) and the Ministry of Higher Education.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         Updated footer to match web assignment structure 
+        <footer>
+            <section class="footer">
+                <h4>About Us</h4>
+                <p>NSBM Green University is established under the 
+                    purview of the Ministry of Education and it is renowned for <br>its world-class academic offerings</p>
+                
+                <div class="footer-links">
+                    <a href="Web assignment.html">Home</a> |
+                    <a href="about us.html">About</a> |
+                    <a href="courses.html">Courses</a> |
+                    <a href="faculties.html">Faculties</a> |
+                    <a href="facilities.html">Facilities</a> |
+                    <a href="contact us.html">Contact</a>
+                </div>
+
+                <div class="footer-credit">
+                    Developed by <b>Kalana Sehas Darshana</b>
+                </div>
+            </section>
+
+            <div class="footer-container">
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/nsbm.lk/?_rdc=1&_rdr" class="icon-link">
+                        <img src="facebook.png" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/nsbmgreenuniversity/" class="icon-link">
+                        <img src="instagram.png" alt="Instagram">
+                    </a>
+                    <a href="https://twitter.com/nsbm_srilanka" class="icon-link">
+                        <img src="twitter.png" alt="Twitter">
+                    </a>
+                    <a href="https://lk.linkedin.com/school/nsbmgreenuniversity/" class="icon-link">
+                        <img src="linkedin.png" alt="LinkedIn">
+                    </a>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            const currentPage = window.location.pathname.split("/").pop().toLowerCase();
+            document.querySelectorAll(".nav-links ul li a").forEach(link => {
+                const linkHref = link.getAttribute("href").toLowerCase();
+                if (linkHref === currentPage || linkHref === decodeURIComponent(currentPage)) {
+                    link.classList.add("active");
+                }
+            });
+        </script>
+    </body>
+</html>
