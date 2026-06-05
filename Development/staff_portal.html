@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Portal — NSBM Green University</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="staff_portal.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="Web_assignment.html" class="logo"><img src="assets/images/logo.png" alt="NSBM Green University"></a>
+      <div class="nav-links">
+        <ul>
+          <li><a href="Web_assignment.html">HOME</a></li>
+          <li><a href="about_us.html">ABOUT US</a></li>
+          <li><a href="courses.html">COURSES</a></li>
+          <li><a href="facilities.html">FACILITIES</a></li>
+          <li><a href="faculties.html">FACULTIES</a></li>
+          <li><a href="contact_us.html">CONTACT US</a></li>
+          <li><a href="#" class="nav-logout-btn" onclick="doLogout()">LOGOUT</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="page-content staff-page">
+
+    <!-- TOP STRIP -->
+    <div class="staff-strip">
+      <div class="staff-strip-inner">
+        <div class="staff-user-info">
+          <div class="staff-ava" id="staff-ava">D</div>
+          <div>
+            <p class="staff-greeting">Academic Staff Portal</p>
+            <h2 id="staff-name">Dr. A. Perera</h2>
+            <p class="staff-sub" id="staff-dept">Faculty of Computing &nbsp;&middot;&nbsp; Senior Lecturer</p>
+          </div>
+        </div>
+        <div class="staff-strip-actions">
+          <button class="sp-btn outline" onclick="showTab('profile')">My Profile</button>
+          <button class="sp-btn solid" onclick="doLogout()">Sign Out</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB NAV -->
+    <div class="sp-tab-bar">
+      <div class="sp-tab-inner">
+        <button class="sp-tab active" id="tab-dashboard"  onclick="showTab('dashboard')">Dashboard</button>
+        <button class="sp-tab"        id="tab-timetable"  onclick="showTab('timetable')">My Timetable</button>
+        <button class="sp-tab"        id="tab-classes"    onclick="showTab('classes')">My Classes</button>
+        <button class="sp-tab"        id="tab-grades"     onclick="showTab('grades')">Grades</button>
+        <button class="sp-tab"        id="tab-leaves"     onclick="showTab('leaves')">Leave Requests</button>
+        <button class="sp-tab"        id="tab-profile"    onclick="showTab('profile')">My Profile</button>
+      </div>
+    </div>
+
+    <div class="sp-body">
+
+      <!-- ─── DASHBOARD ─── -->
+      <div id="sec-dashboard" class="sp-section active-sp-section">
+        <div class="sp-stat-row">
+          <div class="sp-stat"><span class="sp-stat-num">4</span><span class="sp-stat-lbl">Modules Teaching</span></div>
+          <div class="sp-stat"><span class="sp-stat-num">142</span><span class="sp-stat-lbl">Total Students</span></div>
+          <div class="sp-stat"><span class="sp-stat-num">3</span><span class="sp-stat-lbl">Classes Today</span></div>
+          <div class="sp-stat"><span class="sp-stat-num">18</span><span class="sp-stat-lbl">Pending Grades</span></div>
+        </div>
+
+        <div class="sp-grid-2">
+          <div class="sp-panel">
+            <div class="sp-panel-hdr"><h3>Today's Schedule</h3><span class="sp-meta" id="sp-date"></span></div>
+            <div class="tt-list">
+              <div class="tt-row"><div class="tt-time">08:00 – 10:00</div><div class="tt-detail"><strong>Data Structures and Algorithms</strong><span>Lab 2A &nbsp;&middot;&nbsp; Yr 2 Computing</span></div><span class="tt-badge ongoing">Now</span></div>
+              <div class="tt-row"><div class="tt-time">11:00 – 13:00</div><div class="tt-detail"><strong>Advanced Algorithms</strong><span>LH 301 &nbsp;&middot;&nbsp; Yr 3 Computing</span></div><span class="tt-badge upcoming">Next</span></div>
+              <div class="tt-row"><div class="tt-time">14:00 – 16:00</div><div class="tt-detail"><strong>Research Methods</strong><span>LH 101 &nbsp;&middot;&nbsp; Postgraduate</span></div><span class="tt-badge upcoming">Upcoming</span></div>
+            </div>
+          </div>
+
+          <div class="sp-panel">
+            <div class="sp-panel-hdr"><h3>Notifications</h3><span class="sp-badge">2 New</span></div>
+            <div class="notif-list">
+              <div class="notif-row unread"><div class="notif-dot"></div><div class="notif-body"><strong>Grade submission deadline</strong><p>Semester 2 final grades must be submitted by August 20, 2025.</p><span>Today</span></div></div>
+              <div class="notif-row unread"><div class="notif-dot"></div><div class="notif-body"><strong>Faculty meeting scheduled</strong><p>Faculty of Computing meeting on August 12 at 2:00 PM, Room C201.</p><span>Yesterday</span></div></div>
+              <div class="notif-row"><div class="notif-dot read"></div><div class="notif-body"><strong>Timetable updated</strong><p>Your Thursday timetable has been revised for next week.</p><span>Aug 5, 2025</span></div></div>
+              <div class="notif-row"><div class="notif-dot read"></div><div class="notif-body"><strong>Research grant approved</strong><p>Your research grant application for 2025 has been approved.</p><span>Aug 3, 2025</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── TIMETABLE ─── -->
+      <div id="sec-timetable" class="sp-section">
+        <div class="sp-panel">
+          <div class="sp-panel-hdr"><h3>Weekly Teaching Timetable</h3><span class="sp-meta">Semester 2 — 2025</span></div>
+          <div class="timetable-grid-wrap">
+            <table class="timetable-grid">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thursday</th>
+                  <th>Friday</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="time-cell">08:00 – 10:00</td>
+                  <td class="class-cell"><strong>Data Structures</strong><span>Lab 2A</span></td>
+                  <td></td>
+                  <td class="class-cell"><strong>Data Structures</strong><span>LH 204</span></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="time-cell">10:30 – 12:30</td>
+                  <td></td>
+                  <td class="class-cell"><strong>Advanced Algorithms</strong><span>LH 301</span></td>
+                  <td></td>
+                  <td class="class-cell"><strong>Advanced Algorithms</strong><span>Lab 3B</span></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="time-cell">13:30 – 15:30</td>
+                  <td></td>
+                  <td></td>
+                  <td class="class-cell"><strong>Research Methods</strong><span>LH 101</span></td>
+                  <td></td>
+                  <td class="class-cell"><strong>Research Methods</strong><span>LH 101</span></td>
+                </tr>
+                <tr>
+                  <td class="time-cell">16:00 – 18:00</td>
+                  <td class="class-cell"><strong>Software Engineering</strong><span>LH 205</span></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="class-cell"><strong>Office Hours</strong><span>Room C201</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── MY CLASSES ─── -->
+      <div id="sec-classes" class="sp-section">
+        <div class="sp-panel">
+          <div class="sp-panel-hdr"><h3>My Classes &amp; Modules</h3></div>
+          <table class="sp-table">
+            <thead><tr><th>Module Code</th><th>Module Name</th><th>Year / Group</th><th>Students</th><th>Attendance</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td><code>CS2101</code></td><td>Data Structures and Algorithms</td><td>Yr 2 — Group A</td><td>38</td><td><span class="att-chip good">87%</span></td><td><button class="sp-action-btn" onclick="alert('Opening attendance register...')">Attendance</button></td></tr>
+              <tr><td><code>CS3201</code></td><td>Advanced Algorithms</td><td>Yr 3 — Group B</td><td>32</td><td><span class="att-chip good">91%</span></td><td><button class="sp-action-btn" onclick="alert('Opening attendance register...')">Attendance</button></td></tr>
+              <tr><td><code>RM4001</code></td><td>Research Methods</td><td>Postgraduate</td><td>24</td><td><span class="att-chip warn">72%</span></td><td><button class="sp-action-btn" onclick="alert('Opening attendance register...')">Attendance</button></td></tr>
+              <tr><td><code>SE2301</code></td><td>Software Engineering</td><td>Yr 2 — Group C</td><td>48</td><td><span class="att-chip good">84%</span></td><td><button class="sp-action-btn" onclick="alert('Opening attendance register...')">Attendance</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ─── GRADES ─── -->
+      <div id="sec-grades" class="sp-section">
+        <div class="sp-panel">
+          <div class="sp-panel-hdr">
+            <h3>Grade Submission</h3>
+            <span class="sp-deadline">Deadline: August 20, 2025</span>
+          </div>
+          <div class="grade-module-tabs">
+            <button class="gm-tab active" onclick="switchGradeTab(this,'g-cs2101')">Data Structures</button>
+            <button class="gm-tab" onclick="switchGradeTab(this,'g-cs3201')">Advanced Algorithms</button>
+          </div>
+
+          <div id="g-cs2101" class="grade-tab-content active-grade-tab">
+            <table class="sp-table">
+              <thead><tr><th>Student ID</th><th>Name</th><th>Midterm</th><th>Assignment</th><th>Final</th><th>Grade</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td><code>NSBM12345</code></td><td>Kalana Darshana</td><td><input class="grade-input" type="number" value="72" min="0" max="100" onchange="calcGrade(this)"></td><td><input class="grade-input" type="number" value="80" min="0" max="100" onchange="calcGrade(this)"></td><td><input class="grade-input" type="number" value="68" min="0" max="100" onchange="calcGrade(this)"></td><td><span class="grade b">B+</span></td><td><button class="sp-action-btn" onclick="alert('Grade saved!')">Save</button></td></tr>
+                <tr><td><code>NSBM12346</code></td><td>Amali Perera</td><td><input class="grade-input" type="number" value="85" min="0" max="100" onchange="calcGrade(this)"></td><td><input class="grade-input" type="number" value="90" min="0" max="100" onchange="calcGrade(this)"></td><td><input class="grade-input" type="number" value="88" min="0" max="100" onchange="calcGrade(this)"></td><td><span class="grade a">A</span></td><td><button class="sp-action-btn" onclick="alert('Grade saved!')">Save</button></td></tr>
+                <tr><td><code>NSBM12347</code></td><td>Kasun Silva</td><td><input class="grade-input" type="number" value="60" min="0" max="100" onchange="calcGrade(this)"></td><td><input class="grade-input" type="number" value="55" min="0" max="100" onchange="calcGrade(this)"></td><td><input class="grade-input" type="number" value="62" min="0" max="100" onchange="calcGrade(this)"></td><td><span class="grade c">C+</span></td><td><button class="sp-action-btn" onclick="alert('Grade saved!')">Save</button></td></tr>
+              </tbody>
+            </table>
+            <button class="sp-submit-all" onclick="alert('All grades submitted successfully!')">Submit All Grades</button>
+          </div>
+
+          <div id="g-cs3201" class="grade-tab-content">
+            <p style="padding:24px;color:#888;font-size:14px;">Select a student row to enter grades for Advanced Algorithms.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── LEAVE REQUESTS ─── -->
+      <div id="sec-leaves" class="sp-section">
+        <div class="sp-grid-2">
+          <div class="sp-panel">
+            <div class="sp-panel-hdr"><h3>Submit Leave Request</h3></div>
+            <div class="leave-form">
+              <div class="sp-field-group">
+                <label>Leave Type</label>
+                <select id="leave-type">
+                  <option>Annual Leave</option>
+                  <option>Medical Leave</option>
+                  <option>Conference / Research Leave</option>
+                  <option>Casual Leave</option>
+                </select>
+              </div>
+              <div class="sp-field-row">
+                <div class="sp-field-group">
+                  <label>From Date</label>
+                  <input type="date" id="leave-from">
+                </div>
+                <div class="sp-field-group">
+                  <label>To Date</label>
+                  <input type="date" id="leave-to">
+                </div>
+              </div>
+              <div class="sp-field-group">
+                <label>Reason</label>
+                <textarea id="leave-reason" rows="4" placeholder="Briefly describe the reason for your leave request..."></textarea>
+              </div>
+              <button class="sp-submit-btn" onclick="submitLeave()">Submit Request</button>
+              <div id="leave-success" class="alert alert-success" style="display:none;margin-top:14px;">Leave request submitted successfully.</div>
+            </div>
+          </div>
+
+          <div class="sp-panel">
+            <div class="sp-panel-hdr"><h3>Leave History</h3></div>
+            <table class="sp-table">
+              <thead><tr><th>Type</th><th>From</th><th>To</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Annual Leave</td><td>2025-07-14</td><td>2025-07-18</td><td><span class="status-chip approved">Approved</span></td></tr>
+                <tr><td>Conference Leave</td><td>2025-06-20</td><td>2025-06-22</td><td><span class="status-chip approved">Approved</span></td></tr>
+                <tr><td>Medical Leave</td><td>2025-05-03</td><td>2025-05-04</td><td><span class="status-chip approved">Approved</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── PROFILE ─── -->
+      <div id="sec-profile" class="sp-section">
+        <div class="profile-grid">
+          <div class="sp-panel profile-card">
+            <div class="profile-photo-wrap">
+              <div class="profile-photo" id="profile-photo-circle">D</div>
+              <button class="change-photo-btn" onclick="alert('Photo upload coming soon.')">Change Photo</button>
+            </div>
+            <h3 id="profile-name-card">Dr. A. Perera</h3>
+            <p class="profile-role" id="profile-role-card">Senior Lecturer</p>
+            <p class="profile-dept" id="profile-dept-card">Faculty of Computing</p>
+            <div class="profile-links">
+              <a href="mailto:a.perera@nsbm.ac.lk">a.perera@nsbm.ac.lk</a>
+              <span>Ext: 2401</span>
+              <span>Room: C201</span>
+            </div>
+          </div>
+
+          <div class="sp-panel">
+            <div class="sp-panel-hdr"><h3>Personal Information</h3><button class="edit-btn" onclick="toggleEdit()">Edit</button></div>
+            <div class="profile-info-grid">
+              <div class="pi-row"><span class="pi-label">Full Name</span><span class="pi-val" id="pi-name">Dr. Anura Perera</span></div>
+              <div class="pi-row"><span class="pi-label">Staff ID</span><span class="pi-val">STAFF001</span></div>
+              <div class="pi-row"><span class="pi-label">NIC</span><span class="pi-val">197612345678V</span></div>
+              <div class="pi-row"><span class="pi-label">Date of Birth</span><span class="pi-val">15 March 1976</span></div>
+              <div class="pi-row"><span class="pi-label">Gender</span><span class="pi-val">Male</span></div>
+              <div class="pi-row"><span class="pi-label">Department</span><span class="pi-val" id="pi-dept">Faculty of Computing</span></div>
+              <div class="pi-row"><span class="pi-label">Designation</span><span class="pi-val" id="pi-pos">Senior Lecturer</span></div>
+              <div class="pi-row"><span class="pi-label">Joined Date</span><span class="pi-val">01 September 2015</span></div>
+              <div class="pi-row"><span class="pi-label">Email</span><span class="pi-val">a.perera@nsbm.ac.lk</span></div>
+              <div class="pi-row"><span class="pi-label">Mobile</span><span class="pi-val">+94 77 123 4567</span></div>
+              <div class="pi-row"><span class="pi-label">Qualifications</span><span class="pi-val">PhD Computer Science (University of Moratuwa), MSc, BSc (Hons)</span></div>
+              <div class="pi-row"><span class="pi-label">Specialisation</span><span class="pi-val">Algorithms, Data Structures, Software Engineering</span></div>
+            </div>
+
+            <!-- Edit form (hidden by default) -->
+            <div id="edit-form" style="display:none;" class="profile-edit-form">
+              <div class="sp-field-row">
+                <div class="sp-field-group"><label>Mobile</label><input type="text" id="edit-mobile" value="+94 77 123 4567"></div>
+                <div class="sp-field-group"><label>Office Extension</label><input type="text" id="edit-ext" value="2401"></div>
+              </div>
+              <div class="sp-field-group"><label>Research Interests</label><textarea rows="3" id="edit-research">Algorithms, Data Structures, Software Engineering</textarea></div>
+              <div class="sp-field-group"><label>Biography</label><textarea rows="4" id="edit-bio" placeholder="Short professional biography..."></textarea></div>
+              <button class="sp-submit-btn" onclick="saveProfile()">Save Changes</button>
+              <button class="sp-cancel-btn" onclick="toggleEdit()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /sp-body -->
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand"><img src="assets/images/logo.png" alt="NSBM" class="footer-logo"><p>NSBM Green University Academic Staff Portal. For technical support contact the IT Help Desk at it@nsbm.ac.lk</p></div>
+      <div class="footer-links-col"><p class="footer-col-title">Quick Links</p><ul><li><a href="Web_assignment.html">University Website</a></li><li><a href="contact_us.html">Contact</a></li><li><a href="admin_login.html">Admin Portal</a></li></ul></div>
+      <div class="footer-contact-col"><p class="footer-col-title">IT Help Desk</p><div class="contact-item"><div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><p>it@nsbm.ac.lk</p></div><div class="contact-item"><div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.53 2 2 0 0 1 3.59 1.37h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><p>Ext: 1100</p></div></div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 NSBM Green University. All rights reserved. &nbsp;|&nbsp; Developed by <strong>Kalana Sehas Darshana</strong></p>
+      <div class="social-icons"><a href="https://web.facebook.com/nsbm.lk/" target="_blank"><img src="assets/images/facebook.png" alt="Facebook"></a><a href="https://www.instagram.com/nsbmgreenuniversity/" target="_blank"><img src="assets/images/instagram.png" alt="Instagram"></a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Guard
+    const staffSess = sessionStorage.getItem("nsbm_staff_session");
+    if (!staffSess) { window.location.href = "login.html"; }
+    else {
+      const u = JSON.parse(staffSess);
+      document.getElementById("staff-name").textContent  = u.name;
+      document.getElementById("staff-dept").textContent  = u.dept + " \u00b7 " + u.position;
+      document.getElementById("staff-ava").textContent   = u.name.charAt(0).toUpperCase();
+      document.getElementById("profile-name-card").textContent = u.name;
+      document.getElementById("profile-role-card").textContent = u.position;
+      document.getElementById("profile-dept-card").textContent = u.dept;
+      document.getElementById("profile-photo-circle").textContent = u.name.charAt(0).toUpperCase();
+      document.getElementById("pi-name").textContent = u.name;
+      document.getElementById("pi-dept").textContent = u.dept;
+      document.getElementById("pi-pos").textContent  = u.position;
+    }
+
+    document.getElementById("sp-date").textContent = new Date().toLocaleDateString("en-GB", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
+
+    function showTab(id) {
+      document.querySelectorAll(".sp-section").forEach(s => s.classList.remove("active-sp-section"));
+      document.querySelectorAll(".sp-tab").forEach(t => t.classList.remove("active"));
+      document.getElementById("sec-" + id).classList.add("active-sp-section");
+      const tab = document.getElementById("tab-" + id);
+      if (tab) tab.classList.add("active");
+    }
+
+    function switchGradeTab(btn, id) {
+      document.querySelectorAll(".gm-tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".grade-tab-content").forEach(c => c.classList.remove("active-grade-tab"));
+      btn.classList.add("active");
+      document.getElementById(id).classList.add("active-grade-tab");
+    }
+
+    function submitLeave() {
+      const from = document.getElementById("leave-from").value;
+      const to   = document.getElementById("leave-to").value;
+      const type = document.getElementById("leave-type").value;
+      const reason = document.getElementById("leave-reason").value;
+      if (!from || !to || !reason) { alert("Please fill in all fields."); return; }
+      const suc = document.getElementById("leave-success");
+      suc.style.display = "block";
+      setTimeout(() => suc.style.display = "none", 5000);
+      document.getElementById("leave-reason").value = "";
+    }
+
+    let editOpen = false;
+    function toggleEdit() {
+      editOpen = !editOpen;
+      document.getElementById("edit-form").style.display = editOpen ? "block" : "none";
+    }
+
+    function saveProfile() {
+      toggleEdit();
+      alert("Profile updated successfully.");
+    }
+
+    function doLogout() {
+      sessionStorage.removeItem("nsbm_staff_session");
+      window.location.href = "login.html";
+    }
+
+    const cp = window.location.pathname.split("/").pop().toLowerCase();
+    document.querySelectorAll(".nav-links ul li a").forEach(a => { if (a.getAttribute("href").toLowerCase() === cp) a.classList.add("active"); });
+  </script>
+</body>
+</html>

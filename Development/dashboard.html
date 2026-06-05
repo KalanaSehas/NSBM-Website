@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard — NSBM Green University</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="Web_assignment.html" class="logo"><img src="assets/images/logo.png" alt="NSBM Green University"></a>
+      <div class="nav-links">
+        <ul>
+          <li><a href="Web_assignment.html">HOME</a></li>
+          <li><a href="about_us.html">ABOUT US</a></li>
+          <li><a href="courses.html">COURSES</a></li>
+          <li><a href="facilities.html">FACILITIES</a></li>
+          <li><a href="faculties.html">FACULTIES</a></li>
+          <li><a href="contact_us.html">CONTACT US</a></li>
+          <li><a href="#" class="nav-logout-btn" onclick="doLogout()">LOGOUT</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="page-content dash-page">
+
+    <!-- HEADER STRIP -->
+    <div class="dash-strip">
+      <div class="dash-strip-inner">
+        <div class="dash-user-info">
+          <div class="dash-ava" id="dash-ava">K</div>
+          <div>
+            <p class="dash-greeting">Welcome back</p>
+            <h2 id="dash-name">Student</h2>
+            <p class="dash-sub" id="dash-faculty">Faculty of Computing &nbsp;·&nbsp; Student</p>
+          </div>
+        </div>
+        <div class="dash-strip-actions">
+          <a href="courses.html" class="dash-btn outline">Browse Courses</a>
+          <button class="dash-btn solid" onclick="doLogout()">Sign Out</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="dash-body">
+
+      <!-- STAT ROW -->
+      <div class="dash-stats">
+        <div class="dstat"><span class="ds-num">6</span><span class="ds-lbl">Enrolled Modules</span></div>
+        <div class="dstat"><span class="ds-num">3</span><span class="ds-lbl">Upcoming Exams</span></div>
+        <div class="dstat"><span class="ds-num">87%</span><span class="ds-lbl">Attendance Rate</span></div>
+        <div class="dstat"><span class="ds-num">3.7</span><span class="ds-lbl">Current GPA</span></div>
+      </div>
+
+      <!-- GRID -->
+      <div class="dash-grid">
+
+        <!-- TIMETABLE -->
+        <div class="dash-panel">
+          <div class="dash-panel-hdr">
+            <h3>Today's Timetable</h3>
+            <span class="panel-meta" id="today-date"></span>
+          </div>
+          <div class="tt-list">
+            <div class="tt-row"><div class="tt-time">08:30 – 10:30</div><div class="tt-detail"><strong>Data Structures and Algorithms</strong><span>Lab 2A &nbsp;·&nbsp; Dr. Perera</span></div><span class="tt-badge ongoing">Ongoing</span></div>
+            <div class="tt-row"><div class="tt-time">11:00 – 13:00</div><div class="tt-detail"><strong>Database Management Systems</strong><span>LH 301 &nbsp;·&nbsp; Mr. Fernando</span></div><span class="tt-badge upcoming">Upcoming</span></div>
+            <div class="tt-row"><div class="tt-time">14:00 – 15:30</div><div class="tt-detail"><strong>Software Engineering</strong><span>LH 204 &nbsp;·&nbsp; Ms. Jayasinghe</span></div><span class="tt-badge upcoming">Upcoming</span></div>
+            <div class="tt-row"><div class="tt-time">16:00 – 17:00</div><div class="tt-detail"><strong>Research Methods</strong><span>LH 101 &nbsp;·&nbsp; Dr. Silva</span></div><span class="tt-badge upcoming">Upcoming</span></div>
+          </div>
+        </div>
+
+        <!-- ANNOUNCEMENTS -->
+        <div class="dash-panel">
+          <div class="dash-panel-hdr">
+            <h3>Announcements</h3>
+            <span class="panel-badge">3 New</span>
+          </div>
+          <div class="ann-list">
+            <div class="ann-row unread"><div class="ann-dot"></div><div class="ann-body"><strong>Exam Schedule — Semester 2</strong><p>The examination timetable for Semester 2 has been published. Please check the student portal for your individual schedule.</p><span>Today, 09:15 AM</span></div></div>
+            <div class="ann-row unread"><div class="ann-dot"></div><div class="ann-body"><strong>Library Extended Hours</strong><p>The NSBM Library will be open until 10:00 PM on weekdays during the examination period.</p><span>Yesterday</span></div></div>
+            <div class="ann-row unread"><div class="ann-dot"></div><div class="ann-body"><strong>Hackathon 2025 — Registrations Open</strong><p>NSBM Hackathon 2025 registrations are open. Form your team of 3–5 and submit before August 30.</p><span>2 days ago</span></div></div>
+            <div class="ann-row"><div class="ann-dot read"></div><div class="ann-body"><strong>Mid-Semester Break</strong><p>Break is scheduled for August 10–16. Regular lectures resume August 17.</p><span>Aug 1, 2025</span></div></div>
+          </div>
+        </div>
+
+        <!-- RESULTS TABLE -->
+        <div class="dash-panel">
+          <div class="dash-panel-hdr"><h3>Module Results</h3></div>
+          <div class="results-wrap">
+            <table class="results-tbl">
+              <thead><tr><th>Module</th><th>Credits</th><th>Grade</th><th>GPA</th></tr></thead>
+              <tbody>
+                <tr><td>Programming Fundamentals</td><td>3</td><td><span class="grade a">A</span></td><td>4.0</td></tr>
+                <tr><td>Mathematics for Computing</td><td>3</td><td><span class="grade a">A&minus;</span></td><td>3.7</td></tr>
+                <tr><td>Web Design and Development</td><td>3</td><td><span class="grade b">B+</span></td><td>3.3</td></tr>
+                <tr><td>Computer Networks</td><td>3</td><td><span class="grade a">A</span></td><td>4.0</td></tr>
+                <tr><td>Object-Oriented Programming</td><td>3</td><td><span class="grade b">B+</span></td><td>3.3</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- QUICK ACCESS + ATTENDANCE -->
+        <div class="dash-panel">
+          <div class="dash-panel-hdr"><h3>Quick Access</h3></div>
+          <div class="qa-grid">
+            <a href="#" class="qa-item" onclick="alert('Downloading timetable...')">
+              <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+              <span>Timetable</span>
+            </a>
+            <a href="#" class="qa-item" onclick="alert('Opening exam schedule...')">
+              <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+              <span>Exam Schedule</span>
+            </a>
+            <a href="#" class="qa-item" onclick="alert('Opening results...')">
+              <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+              <span>Results</span>
+            </a>
+            <a href="#" class="qa-item" onclick="alert('Opening e-library...')">
+              <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+              <span>E-Library</span>
+            </a>
+            <a href="#" class="qa-item" onclick="alert('Opening fee portal...')">
+              <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+              <span>Fee Payment</span>
+            </a>
+            <a href="contact_us.html" class="qa-item">
+              <div class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <span>Contact Admin</span>
+            </a>
+          </div>
+
+          <div class="att-section">
+            <h4>Attendance Summary</h4>
+            <div class="att-row"><span>Data Structures</span><div class="att-bar-bg"><div class="att-bar" style="width:92%"></div></div><span class="att-pct">92%</span></div>
+            <div class="att-row"><span>Database Systems</span><div class="att-bar-bg"><div class="att-bar" style="width:88%"></div></div><span class="att-pct">88%</span></div>
+            <div class="att-row"><span>Software Engineering</span><div class="att-bar-bg"><div class="att-bar warn" style="width:74%"></div></div><span class="att-pct warn">74%</span></div>
+            <div class="att-row"><span>Research Methods</span><div class="att-bar-bg"><div class="att-bar" style="width:95%"></div></div><span class="att-pct">95%</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand"><img src="assets/images/logo.png" alt="NSBM" class="footer-logo"><p>NSBM Green University is established under the purview of the Ministry of Education and is renowned for its world-class academic offerings.</p></div>
+      <div class="footer-links-col"><p class="footer-col-title">Quick Links</p><ul><li><a href="Web_assignment.html">Home</a></li><li><a href="about_us.html">About Us</a></li><li><a href="courses.html">Courses</a></li><li><a href="faculties.html">Faculties</a></li><li><a href="facilities.html">Facilities</a></li><li><a href="contact_us.html">Contact</a></li></ul></div>
+      <div class="footer-contact-col"><p class="footer-col-title">Contact</p><div class="contact-item"><div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><p>inquiries@nsbm.ac.lk</p></div></div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 NSBM Green University. All rights reserved. &nbsp;|&nbsp; Developed by <strong>Kalana Sehas Darshana</strong></p>
+      <div class="social-icons"><a href="https://web.facebook.com/nsbm.lk/" target="_blank"><img src="assets/images/facebook.png" alt="Facebook"></a><a href="https://www.instagram.com/nsbmgreenuniversity/" target="_blank"><img src="assets/images/instagram.png" alt="Instagram"></a><a href="https://twitter.com/nsbm_srilanka" target="_blank"><img src="assets/images/twitter.png" alt="Twitter"></a><a href="https://lk.linkedin.com/school/nsbmgreenuniversity/" target="_blank"><img src="assets/images/linkedin.png" alt="LinkedIn"></a></div>
+    </div>
+  </footer>
+
+  <script>
+    const sess = sessionStorage.getItem("nsbm_session");
+    if (!sess) { window.location.href = "login.html"; }
+    else {
+      const u = JSON.parse(sess);
+      document.getElementById("dash-name").textContent    = u.name;
+      document.getElementById("dash-faculty").textContent = u.faculty + " \u00b7 Student";
+      document.getElementById("dash-ava").textContent     = u.name.charAt(0).toUpperCase();
+    }
+    document.getElementById("today-date").textContent = new Date().toLocaleDateString("en-GB", { weekday:"short", day:"numeric", month:"short", year:"numeric" });
+    function doLogout() { sessionStorage.removeItem("nsbm_session"); window.location.href = "login.html"; }
+    const cp = window.location.pathname.split("/").pop().toLowerCase();
+    document.querySelectorAll(".nav-links ul li a").forEach(a => { if (a.getAttribute("href").toLowerCase() === cp) a.classList.add("active"); });
+  </script>
+</body>
+</html>

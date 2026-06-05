@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — NSBM Green University</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="Web_assignment.html" class="logo"><img src="assets/images/logo.png" alt="NSBM Green University"></a>
+      <div class="nav-links">
+        <ul>
+          <li><a href="Web_assignment.html">HOME</a></li>
+          <li><a href="about_us.html">ABOUT US</a></li>
+          <li><a href="courses.html">COURSES</a></li>
+          <li><a href="facilities.html">FACILITIES</a></li>
+          <li><a href="faculties.html">FACULTIES</a></li>
+          <li><a href="contact_us.html">CONTACT US</a></li>
+          <li><a href="login.html" class="nav-login-btn">LOGIN</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="page-content login-page">
+    <div class="login-split">
+
+      <!-- LEFT BRAND PANEL -->
+      <div class="login-brand">
+        <div class="login-brand-inner">
+          <h2>NSBM Portal Login</h2>
+          <p>Access is restricted to authorised students and academic staff of NSBM Green University only.</p>
+
+          <div class="lb-role-cards">
+            <div class="lb-role-card active-role" id="role-student" onclick="selectRole('student')">
+              <div class="lr-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <div><strong>Student</strong><p>Access courses, results &amp; timetables</p></div>
+            </div>
+            <div class="lb-role-card" id="role-staff" onclick="selectRole('staff')">
+              <div class="lr-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div><strong>Academic Staff</strong><p>Manage classes, grades &amp; schedule</p></div>
+            </div>
+          </div>
+
+          <div class="lb-admin-link">
+            <p>Are you an administrator?</p>
+            <a href="admin_login.html">Go to Admin Portal &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT FORM PANEL -->
+      <div class="login-form-panel">
+
+        <!-- STUDENT LOGIN -->
+        <div id="panel-student" class="role-panel active-panel">
+          <div class="panel-header-tag">Student Portal</div>
+          <h3>Student Sign In</h3>
+          <p class="form-sub">Enter your authorised student credentials to continue.</p>
+
+          <div id="s-error"   class="alert alert-error"   style="display:none;"></div>
+          <div id="s-success" class="alert alert-success" style="display:none;"></div>
+
+          <div class="field-group">
+            <label for="s-id">Student ID</label>
+            <div class="field-wrap">
+              <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <input type="text" id="s-id" placeholder="e.g. NSBM12345" autocomplete="username">
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="s-pw">Password</label>
+            <div class="field-wrap">
+              <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="s-pw" placeholder="Enter your password" autocomplete="current-password">
+              <button type="button" class="pw-toggle" onclick="togglePw('s-pw',this)">Show</button>
+            </div>
+          </div>
+
+          <div class="field-row-flex">
+            <label class="check-wrap"><input type="checkbox"> Remember me</label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <button class="auth-submit" onclick="doStudentLogin()">Sign In</button>
+
+          <div class="demo-box">
+            <strong>Authorised credentials required</strong>
+            <p>Demo &mdash; Student ID: <code>NSBM12345</code> &nbsp; Password: <code>student123</code></p>
+          </div>
+        </div>
+
+        <!-- STAFF LOGIN -->
+        <div id="panel-staff" class="role-panel">
+          <div class="panel-header-tag staff-tag">Staff Portal</div>
+          <h3>Academic Staff Sign In</h3>
+          <p class="form-sub">For authorised NSBM academic and non-academic staff only.</p>
+
+          <div id="t-error"   class="alert alert-error"   style="display:none;"></div>
+          <div id="t-success" class="alert alert-success" style="display:none;"></div>
+
+          <div class="field-group">
+            <label for="t-id">Staff ID</label>
+            <div class="field-wrap">
+              <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <input type="text" id="t-id" placeholder="e.g. STAFF001" autocomplete="username">
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="t-pw">Password</label>
+            <div class="field-wrap">
+              <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="t-pw" placeholder="Enter your password" autocomplete="current-password">
+              <button type="button" class="pw-toggle" onclick="togglePw('t-pw',this)">Show</button>
+            </div>
+          </div>
+
+          <div class="field-row-flex">
+            <label class="check-wrap"><input type="checkbox"> Remember me</label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <button class="auth-submit staff-submit" onclick="doStaffLogin()">Sign In</button>
+
+          <div class="demo-box">
+            <strong>Authorised credentials required</strong>
+            <p>Demo &mdash; Staff ID: <code>STAFF001</code> &nbsp; Password: <code>staff123</code></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand"><img src="assets/images/logo.png" alt="NSBM" class="footer-logo"><p>NSBM Green University is established under the purview of the Ministry of Education and is renowned for its world-class academic offerings.</p></div>
+      <div class="footer-links-col"><p class="footer-col-title">Quick Links</p><ul><li><a href="Web_assignment.html">Home</a></li><li><a href="about_us.html">About Us</a></li><li><a href="courses.html">Courses</a></li><li><a href="faculties.html">Faculties</a></li><li><a href="facilities.html">Facilities</a></li><li><a href="contact_us.html">Contact</a></li></ul></div>
+      <div class="footer-contact-col"><p class="footer-col-title">Contact</p><div class="contact-item"><div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><p>inquiries@nsbm.ac.lk</p></div></div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 NSBM Green University. All rights reserved. &nbsp;|&nbsp; Developed by <strong>Kalana Sehas Darshana</strong></p>
+      <div class="social-icons"><a href="https://web.facebook.com/nsbm.lk/" target="_blank"><img src="assets/images/facebook.png" alt="Facebook"></a><a href="https://www.instagram.com/nsbmgreenuniversity/" target="_blank"><img src="assets/images/instagram.png" alt="Instagram"></a><a href="https://twitter.com/nsbm_srilanka" target="_blank"><img src="assets/images/twitter.png" alt="Twitter"></a><a href="https://lk.linkedin.com/school/nsbmgreenuniversity/" target="_blank"><img src="assets/images/linkedin.png" alt="LinkedIn"></a></div>
+    </div>
+  </footer>
+
+  <script>
+    const cp = window.location.pathname.split("/").pop().toLowerCase();
+    document.querySelectorAll(".nav-links ul li a").forEach(a => { if (a.getAttribute("href").toLowerCase() === cp) a.classList.add("active"); });
+
+    // Authorised credentials only
+    const STUDENTS = [{ id:"NSBM12345", password:"student123", name:"Kalana Darshana", faculty:"Faculty of Computing" }];
+    const STAFF    = [{ id:"STAFF001",  password:"staff123",  name:"Dr. A. Perera",    dept:"Faculty of Computing", role:"Senior Lecturer" }];
+
+    let currentRole = "student";
+
+    function selectRole(role) {
+      currentRole = role;
+      document.querySelectorAll(".lb-role-card").forEach(c => c.classList.remove("active-role"));
+      document.getElementById("role-" + role).classList.add("active-role");
+      document.querySelectorAll(".role-panel").forEach(p => p.classList.remove("active-panel"));
+      document.getElementById("panel-" + role).classList.add("active-panel");
+    }
+
+    function togglePw(id, btn) {
+      const f = document.getElementById(id);
+      f.type = f.type === "password" ? "text" : "password";
+      btn.textContent = f.type === "password" ? "Show" : "Hide";
+    }
+
+    function doStudentLogin() {
+      const id = document.getElementById("s-id").value.trim();
+      const pw = document.getElementById("s-pw").value;
+      const err = document.getElementById("s-error");
+      const suc = document.getElementById("s-success");
+      err.style.display = suc.style.display = "none";
+      if (!id || !pw) { err.textContent = "Please enter your Student ID and password."; err.style.display="block"; return; }
+      const user = STUDENTS.find(u => u.id === id && u.password === pw);
+      if (user) {
+        sessionStorage.setItem("nsbm_session", JSON.stringify({ name:user.name, role:"student", faculty:user.faculty }));
+        suc.textContent = "Sign in successful. Redirecting to your dashboard...";
+        suc.style.display = "block";
+        setTimeout(() => window.location.href = "dashboard.html", 1400);
+      } else {
+        err.textContent = "Access denied. Invalid credentials or you are not an authorised student.";
+        err.style.display = "block";
+      }
+    }
+
+    function doStaffLogin() {
+      const id = document.getElementById("t-id").value.trim();
+      const pw = document.getElementById("t-pw").value;
+      const err = document.getElementById("t-error");
+      const suc = document.getElementById("t-success");
+      err.style.display = suc.style.display = "none";
+      if (!id || !pw) { err.textContent = "Please enter your Staff ID and password."; err.style.display="block"; return; }
+      const user = STAFF.find(u => u.id === id && u.password === pw);
+      if (user) {
+        sessionStorage.setItem("nsbm_staff_session", JSON.stringify({ name:user.name, role:"staff", dept:user.dept, position:user.role }));
+        suc.textContent = "Sign in successful. Redirecting to Staff Portal...";
+        suc.style.display = "block";
+        setTimeout(() => window.location.href = "staff_portal.html", 1400);
+      } else {
+        err.textContent = "Access denied. Invalid credentials or you are not an authorised staff member.";
+        err.style.display = "block";
+      }
+    }
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        if (currentRole === "student") doStudentLogin();
+        else doStaffLogin();
+      }
+    });
+  </script>
+</body>
+</html>
