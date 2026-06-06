@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login — NSBM Green University</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="admin_login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="admin-login-page">
+    <div class="admin-login-card">
+
+      <div class="alc-header">
+        <img src="assets/images/logo.png" alt="NSBM" class="alc-logo">
+        <div class="alc-badge">Admin Portal</div>
+        <h2>Administrator Login</h2>
+        <p>This portal is restricted to authorised NSBM administrators only.</p>
+      </div>
+
+      <div id="al-error"   class="alert alert-error"   style="display:none;"></div>
+      <div id="al-success" class="alert alert-success" style="display:none;"></div>
+
+      <div class="field-group">
+        <label for="al-user">Admin Username</label>
+        <div class="field-wrap">
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <input type="text" id="al-user" placeholder="Enter admin username" autocomplete="username">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="al-pw">Password</label>
+        <div class="field-wrap">
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <input type="password" id="al-pw" placeholder="Enter admin password" autocomplete="current-password">
+          <button type="button" class="pw-toggle" onclick="togglePw('al-pw',this)">Show</button>
+        </div>
+      </div>
+
+      <button class="auth-submit" onclick="doAdminLogin()">Sign In to Admin Panel</button>
+
+      <div class="demo-box">
+        <strong>Demo credentials</strong>
+        <p>Username: <code>admin</code> &nbsp; Password: <code>admin2025</code></p>
+      </div>
+
+      <div class="back-link">
+        <a href="login.html">&larr; Back to Student Login</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="Web_assignment.html">Go to Website</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function togglePw(id, btn) {
+      const f = document.getElementById(id);
+      f.type = f.type === "password" ? "text" : "password";
+      btn.textContent = f.type === "password" ? "Show" : "Hide";
+    }
+
+    const ADMINS = [
+      { username: "admin", password: "admin2025", name: "System Administrator" }
+    ];
+
+    function doAdminLogin() {
+      const user = document.getElementById("al-user").value.trim();
+      const pw   = document.getElementById("al-pw").value;
+      const err  = document.getElementById("al-error");
+      const suc  = document.getElementById("al-success");
+      err.style.display = suc.style.display = "none";
+
+      if (!user || !pw) {
+        err.textContent = "Please enter your username and password.";
+        err.style.display = "block"; return;
+      }
+
+      const admin = ADMINS.find(a => a.username === user && a.password === pw);
+      if (admin) {
+        sessionStorage.setItem("nsbm_admin", JSON.stringify({ name: admin.name, role: "admin" }));
+        suc.textContent = "Login successful. Redirecting to Admin Panel...";
+        suc.style.display = "block";
+        setTimeout(() => window.location.href = "admin_panel.html", 1400);
+      } else {
+        err.textContent = "Invalid admin credentials. Access denied.";
+        err.style.display = "block";
+      }
+    }
+
+    document.addEventListener("keydown", e => { if (e.key === "Enter") doAdminLogin(); });
+  </script>
+</body>
+</html>

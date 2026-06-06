@@ -1,0 +1,181 @@
+/* ─── ADMIN LOGIN PAGE ─── */
+
+body { margin: 0; padding: 0; background: #0f172a; }
+
+.admin-login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #0f172a 0%, #1a2e0a 60%, #0a1a2e 100%);
+}
+
+.admin-login-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 48px 44px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+}
+
+.alc-header { text-align: center; margin-bottom: 28px; }
+
+.alc-logo {
+  height: 48px; width: auto;
+  display: block; margin: 0 auto 16px;
+  object-fit: contain;
+}
+
+.alc-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: #1e3a5f;
+  color: #93c5fd;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.alc-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.alc-header p {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+/* Fields */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.field-group label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+.field-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field-icon {
+  position: absolute;
+  left: 12px;
+  width: 16px; height: 16px;
+  stroke: #94a3b8;
+  pointer-events: none;
+}
+
+.field-wrap input {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  font-size: 13.5px;
+  font-family: 'Poppins', sans-serif;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 7px;
+  background: #f8fafc;
+  color: #1e293b;
+  outline: none;
+  transition: border-color 0.22s, box-shadow 0.22s;
+}
+
+.field-wrap input:focus {
+  border-color: #1e3a5f;
+  box-shadow: 0 0 0 3px rgba(30,58,95,0.10);
+  background: #fff;
+}
+
+.pw-toggle {
+  position: absolute; right: 12px;
+  background: none; border: none;
+  font-size: 12px; color: #475569;
+  font-weight: 600; cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Alerts */
+.alert {
+  border-radius: 7px;
+  padding: 11px 14px;
+  font-size: 13px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.alert-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
+.alert-success {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #15803d;
+}
+
+/* Submit */
+.auth-submit {
+  width: 100%; padding: 13px;
+  background: #1e3a5f; color: #fff;
+  border: none; border-radius: 7px;
+  font-size: 14px; font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer; letter-spacing: 0.02em;
+  transition: background 0.22s, transform 0.2s;
+  margin-bottom: 16px;
+}
+
+.auth-submit:hover { background: #1e40af; transform: translateY(-2px); }
+
+/* Demo box */
+.demo-box {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 12.5px;
+  color: #475569;
+  margin-bottom: 20px;
+}
+
+.demo-box strong { display: block; margin-bottom: 4px; color: #334155; }
+.demo-box code {
+  background: #e2e8f0; padding: 1px 6px;
+  border-radius: 4px; font-family: monospace; font-size: 12px;
+}
+
+/* Back link */
+.back-link {
+  text-align: center;
+  font-size: 12.5px;
+  color: #94a3b8;
+}
+
+.back-link a {
+  color: #64748b; text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.back-link a:hover { color: #1e3a5f; }
+
+@media (max-width: 480px) {
+  .admin-login-card { padding: 32px 22px; }
+}

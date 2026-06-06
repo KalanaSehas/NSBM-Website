@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — NSBM Green University</title>
+  <link rel="stylesheet" href="admin_panel.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo">
+      <img src="assets/images/logo.png" alt="NSBM">
+      <span>Admin Panel</span>
+    </div>
+    <nav class="sb-nav">
+      <a href="#" class="sb-link active" onclick="showSection('dashboard',this)">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <a href="#" class="sb-link" onclick="showSection('students',this)">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Students
+      </a>
+      <a href="#" class="sb-link" onclick="showSection('courses',this)">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Courses
+      </a>
+      <a href="#" class="sb-link" onclick="showSection('faculties',this)">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        Faculties
+      </a>
+      <a href="#" class="sb-link" onclick="showSection('news',this)">
+        <svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/><path d="M16 2v4"/><path d="M8 10h8"/><path d="M8 14h8"/><path d="M8 18h5"/></svg>
+        News
+      </a>
+      <a href="#" class="sb-link" onclick="showSection('enquiries',this)">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Enquiries
+      </a>
+    </nav>
+    <div class="sb-bottom">
+      <button class="sb-logout" onclick="doAdminLogout()">
+        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" onclick="toggleSidebar()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <h1 class="topbar-title" id="topbar-title">Dashboard</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="admin-badge">
+          <div class="admin-avatar" id="admin-avatar">A</div>
+          <span id="admin-name">Administrator</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ─── DASHBOARD ─── -->
+    <section id="sec-dashboard" class="section active-section">
+      <div class="stat-cards">
+        <div class="stat-card blue">
+          <div class="sc-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <div><span class="sc-num" id="dash-students">0</span><span class="sc-label">Total Students</span></div>
+        </div>
+        <div class="stat-card green">
+          <div class="sc-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg></div>
+          <div><span class="sc-num" id="dash-courses">0</span><span class="sc-label">Courses</span></div>
+        </div>
+        <div class="stat-card purple">
+          <div class="sc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <div><span class="sc-num" id="dash-faculties">0</span><span class="sc-label">Faculties</span></div>
+        </div>
+        <div class="stat-card orange">
+          <div class="sc-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg></div>
+          <div><span class="sc-num" id="dash-enquiries">0</span><span class="sc-label">Enquiries</span></div>
+        </div>
+      </div>
+
+      <div class="dash-recent">
+        <div class="panel">
+          <div class="panel-header"><h3>Recent Students</h3></div>
+          <div class="panel-body" id="recent-students-list"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><h3>Recent Enquiries</h3></div>
+          <div class="panel-body" id="recent-enquiries-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── STUDENTS ─── -->
+    <section id="sec-students" class="section">
+      <div class="section-toolbar">
+        <input type="text" class="search-input" placeholder="Search students..." oninput="renderStudents(this.value)">
+        <button class="btn btn-primary" onclick="openModal('student')">+ Add Student</button>
+      </div>
+      <div class="panel">
+        <table class="data-table" id="students-table">
+          <thead><tr><th>Student ID</th><th>Name</th><th>Email</th><th>Faculty</th><th>Actions</th></tr></thead>
+          <tbody id="students-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ─── COURSES ─── -->
+    <section id="sec-courses" class="section">
+      <div class="section-toolbar">
+        <input type="text" class="search-input" placeholder="Search courses..." oninput="renderCourses(this.value)">
+        <button class="btn btn-primary" onclick="openModal('course')">+ Add Course</button>
+      </div>
+      <div class="panel">
+        <table class="data-table" id="courses-table">
+          <thead><tr><th>Code</th><th>Course Name</th><th>Faculty</th><th>Level</th><th>Actions</th></tr></thead>
+          <tbody id="courses-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ─── FACULTIES ─── -->
+    <section id="sec-faculties" class="section">
+      <div class="section-toolbar">
+        <input type="text" class="search-input" placeholder="Search faculties..." oninput="renderFaculties(this.value)">
+        <button class="btn btn-primary" onclick="openModal('faculty')">+ Add Faculty</button>
+      </div>
+      <div class="panel">
+        <table class="data-table">
+          <thead><tr><th>Faculty Name</th><th>Dean</th><th>Students</th><th>Programmes</th><th>Actions</th></tr></thead>
+          <tbody id="faculties-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ─── NEWS ─── -->
+    <section id="sec-news" class="section">
+      <div class="section-toolbar">
+        <input type="text" class="search-input" placeholder="Search news..." oninput="renderNews(this.value)">
+        <button class="btn btn-primary" onclick="openModal('news')">+ Add News</button>
+      </div>
+      <div class="panel">
+        <table class="data-table">
+          <thead><tr><th>Title</th><th>Category</th><th>Date</th><th>Actions</th></tr></thead>
+          <tbody id="news-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ─── ENQUIRIES ─── -->
+    <section id="sec-enquiries" class="section">
+      <div class="section-toolbar">
+        <input type="text" class="search-input" placeholder="Search enquiries..." oninput="renderEnquiries(this.value)">
+        <span class="toolbar-note">Read-only — submitted via Contact Us form</span>
+      </div>
+      <div class="panel">
+        <table class="data-table">
+          <thead><tr><th>Name</th><th>Email</th><th>Subject</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="enquiries-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal()"></div>
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <h3 id="modal-title">Add Record</h3>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" id="modal-save" onclick="saveModal()">Save</button>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRM -->
+  <div class="modal-overlay" id="del-overlay" onclick="closeDelete()"></div>
+  <div class="modal del-modal" id="del-modal">
+    <div class="modal-header"><h3>Confirm Delete</h3><button class="modal-close" onclick="closeDelete()">&times;</button></div>
+    <div class="modal-body"><p id="del-msg">Are you sure you want to delete this record? This action cannot be undone.</p></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeDelete()">Cancel</button>
+      <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+
+<script>
+/* ════════════════════════════════════════════
+   NSBM ADMIN PANEL — Full CRUD JavaScript
+   ════════════════════════════════════════════ */
+
+// ── Guard ──
+const adminSession = sessionStorage.getItem("nsbm_admin");
+if (!adminSession) window.location.href = "admin_login.html";
+else {
+  const a = JSON.parse(adminSession);
+  document.getElementById("admin-name").textContent = a.name || "Administrator";
+  document.getElementById("admin-avatar").textContent = (a.name || "A").charAt(0);
+}
+
+// ── Data Store (sessionStorage backed) ──
+function getStore(key, def) {
+  const v = sessionStorage.getItem("nsbm_admin_" + key);
+  return v ? JSON.parse(v) : def;
+}
+function setStore(key, val) {
+  sessionStorage.setItem("nsbm_admin_" + key, JSON.stringify(val));
+}
+
+let students   = getStore("students", [
+  { id:"NSBM12345", name:"Kalana Darshana", email:"kalana@email.com", faculty:"Faculty of Computing" },
+  { id:"NSBM12346", name:"Amali Perera",    email:"amali@email.com",  faculty:"Faculty of Business" },
+  { id:"NSBM12347", name:"Kasun Silva",     email:"kasun@email.com",  faculty:"Faculty of Engineering" },
+]);
+
+let courses = getStore("courses", [
+  { code:"CS101", name:"Computer Science",     faculty:"Faculty of Computing",  level:"Undergraduate" },
+  { code:"BS201", name:"Business Management",  faculty:"Faculty of Business",   level:"Undergraduate" },
+  { code:"EG301", name:"Civil Engineering",    faculty:"Faculty of Engineering",level:"Undergraduate" },
+  { code:"FD401", name:"Foundation Programme", faculty:"General",               level:"Foundation" },
+  { code:"MBA01", name:"Master of Business Administration", faculty:"Faculty of Business", level:"Postgraduate" },
+]);
+
+let faculties = getStore("faculties", [
+  { name:"Faculty of Computing",   dean:"Prof. D. Ganepola", students:3800, programmes:8 },
+  { name:"Faculty of Business",    dean:"Prof. A. Weerasinghe", students:4200, programmes:7 },
+  { name:"Faculty of Engineering", dean:"Prof. S. Bandara",  students:2600, programmes:5 },
+  { name:"Faculty of Science",     dean:"Prof. R. Jayaweera", students:1800, programmes:4 },
+]);
+
+let news = getStore("news", [
+  { title:"Residential Workshop on Business Communication", category:"Event",      date:"2025-08-04" },
+  { title:"IMEX'25 — Industrial Management Day 2025",       category:"Academic",   date:"2025-08-01" },
+  { title:"Young Scientists' Circle AGM 2025",              category:"Student Life",date:"2025-08-01" },
+]);
+
+let enquiries = getStore("enquiries", [
+  { name:"Priya Fernando", email:"priya@email.com", subject:"Admission Requirements", date:"2025-08-05", status:"New" },
+  { name:"Rohan Gupta",    email:"rohan@email.com", subject:"Scholarship Information", date:"2025-08-04", status:"Replied" },
+  { name:"Nadia Ali",      email:"nadia@email.com", subject:"Course Duration Query",   date:"2025-08-03", status:"New" },
+]);
+
+// ── Utilities ──
+function save() {
+  setStore("students", students);
+  setStore("courses",  courses);
+  setStore("faculties",faculties);
+  setStore("news",     news);
+  setStore("enquiries",enquiries);
+}
+
+function showToast(msg, type = "success") {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.className = "toast toast-" + type + " show";
+  setTimeout(() => t.className = "toast", 2800);
+}
+
+// ── Navigation ──
+function showSection(id, el) {
+  document.querySelectorAll(".section").forEach(s => s.classList.remove("active-section"));
+  document.querySelectorAll(".sb-link").forEach(l => l.classList.remove("active"));
+  document.getElementById("sec-" + id).classList.add("active-section");
+  if (el) el.classList.add("active");
+  document.getElementById("topbar-title").textContent =
+    id.charAt(0).toUpperCase() + id.slice(1);
+  renderAll();
+}
+
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("collapsed");
+}
+
+// ── Dashboard ──
+function updateDash() {
+  document.getElementById("dash-students").textContent  = students.length;
+  document.getElementById("dash-courses").textContent   = courses.length;
+  document.getElementById("dash-faculties").textContent = faculties.length;
+  document.getElementById("dash-enquiries").textContent = enquiries.length;
+
+  const sl = document.getElementById("recent-students-list");
+  sl.innerHTML = students.slice(-4).reverse().map(s =>
+    `<div class="recent-row"><strong>${s.name}</strong><span>${s.faculty}</span></div>`
+  ).join("") || "<p class='empty'>No students yet.</p>";
+
+  const el = document.getElementById("recent-enquiries-list");
+  el.innerHTML = enquiries.slice(-4).reverse().map(e =>
+    `<div class="recent-row"><strong>${e.name}</strong><span class="status-pill ${e.status === 'New' ? 'pill-new' : 'pill-done'}">${e.status}</span></div>`
+  ).join("") || "<p class='empty'>No enquiries yet.</p>";
+}
+
+// ── Render functions ──
+function renderStudents(q = "") {
+  const flt = students.filter(s =>
+    s.name.toLowerCase().includes(q.toLowerCase()) ||
+    s.id.toLowerCase().includes(q.toLowerCase()) ||
+    s.faculty.toLowerCase().includes(q.toLowerCase())
+  );
+  document.getElementById("students-tbody").innerHTML = flt.length ? flt.map((s, i) =>
+    `<tr>
+      <td><code>${s.id}</code></td>
+      <td>${s.name}</td>
+      <td>${s.email}</td>
+      <td>${s.faculty}</td>
+      <td class="actions">
+        <button class="btn-icon edit" onclick="editRecord('student',${students.indexOf(s)})">Edit</button>
+        <button class="btn-icon del"  onclick="deleteRecord('student',${students.indexOf(s)})">Delete</button>
+      </td>
+    </tr>`).join("") : `<tr><td colspan="5" class="empty-row">No students found.</td></tr>`;
+}
+
+function renderCourses(q = "") {
+  const flt = courses.filter(c =>
+    c.name.toLowerCase().includes(q.toLowerCase()) ||
+    c.code.toLowerCase().includes(q.toLowerCase())
+  );
+  document.getElementById("courses-tbody").innerHTML = flt.length ? flt.map(c =>
+    `<tr>
+      <td><code>${c.code}</code></td>
+      <td>${c.name}</td>
+      <td>${c.faculty}</td>
+      <td><span class="level-pill">${c.level}</span></td>
+      <td class="actions">
+        <button class="btn-icon edit" onclick="editRecord('course',${courses.indexOf(c)})">Edit</button>
+        <button class="btn-icon del"  onclick="deleteRecord('course',${courses.indexOf(c)})">Delete</button>
+      </td>
+    </tr>`).join("") : `<tr><td colspan="5" class="empty-row">No courses found.</td></tr>`;
+}
+
+function renderFaculties(q = "") {
+  const flt = faculties.filter(f => f.name.toLowerCase().includes(q.toLowerCase()));
+  document.getElementById("faculties-tbody").innerHTML = flt.length ? flt.map(f =>
+    `<tr>
+      <td>${f.name}</td>
+      <td>${f.dean}</td>
+      <td>${f.students.toLocaleString()}</td>
+      <td>${f.programmes}</td>
+      <td class="actions">
+        <button class="btn-icon edit" onclick="editRecord('faculty',${faculties.indexOf(f)})">Edit</button>
+        <button class="btn-icon del"  onclick="deleteRecord('faculty',${faculties.indexOf(f)})">Delete</button>
+      </td>
+    </tr>`).join("") : `<tr><td colspan="5" class="empty-row">No faculties found.</td></tr>`;
+}
+
+function renderNews(q = "") {
+  const flt = news.filter(n => n.title.toLowerCase().includes(q.toLowerCase()));
+  document.getElementById("news-tbody").innerHTML = flt.length ? flt.map(n =>
+    `<tr>
+      <td>${n.title}</td>
+      <td><span class="level-pill">${n.category}</span></td>
+      <td>${n.date}</td>
+      <td class="actions">
+        <button class="btn-icon edit" onclick="editRecord('news',${news.indexOf(n)})">Edit</button>
+        <button class="btn-icon del"  onclick="deleteRecord('news',${news.indexOf(n)})">Delete</button>
+      </td>
+    </tr>`).join("") : `<tr><td colspan="4" class="empty-row">No news found.</td></tr>`;
+}
+
+function renderEnquiries(q = "") {
+  const flt = enquiries.filter(e =>
+    e.name.toLowerCase().includes(q.toLowerCase()) ||
+    e.subject.toLowerCase().includes(q.toLowerCase())
+  );
+  document.getElementById("enquiries-tbody").innerHTML = flt.length ? flt.map(e =>
+    `<tr>
+      <td>${e.name}</td>
+      <td>${e.email}</td>
+      <td>${e.subject}</td>
+      <td>${e.date}</td>
+      <td><span class="status-pill ${e.status === 'New' ? 'pill-new' : 'pill-done'}">${e.status}</span></td>
+      <td class="actions">
+        <button class="btn-icon edit" onclick="markEnquiry(${enquiries.indexOf(e)})">Mark Replied</button>
+        <button class="btn-icon del"  onclick="deleteRecord('enquiry',${enquiries.indexOf(e)})">Delete</button>
+      </td>
+    </tr>`).join("") : `<tr><td colspan="6" class="empty-row">No enquiries found.</td></tr>`;
+}
+
+function renderAll() {
+  updateDash(); renderStudents(); renderCourses();
+  renderFaculties(); renderNews(); renderEnquiries();
+}
+
+function markEnquiry(i) {
+  enquiries[i].status = "Replied";
+  save(); renderEnquiries(); showToast("Enquiry marked as Replied.");
+}
+
+// ── MODAL ──
+let modalMode = "", modalIdx = -1, modalType = "";
+
+const FORMS = {
+  student: `
+    <div class="field-group"><label>Student ID</label><input type="text" id="m-sid" placeholder="e.g. NSBM00001"></div>
+    <div class="field-group"><label>Full Name</label><input type="text" id="m-name" placeholder="Full name"></div>
+    <div class="field-group"><label>Email</label><input type="email" id="m-email" placeholder="student@email.com"></div>
+    <div class="field-group"><label>Faculty</label>
+      <select id="m-faculty">
+        <option>Faculty of Computing</option>
+        <option>Faculty of Business</option>
+        <option>Faculty of Engineering</option>
+        <option>Faculty of Science</option>
+        <option>Postgraduate Studies</option>
+      </select>
+    </div>`,
+  course: `
+    <div class="field-group"><label>Course Code</label><input type="text" id="m-code" placeholder="e.g. CS101"></div>
+    <div class="field-group"><label>Course Name</label><input type="text" id="m-name" placeholder="Course name"></div>
+    <div class="field-group"><label>Faculty</label>
+      <select id="m-faculty">
+        <option>Faculty of Computing</option>
+        <option>Faculty of Business</option>
+        <option>Faculty of Engineering</option>
+        <option>Faculty of Science</option>
+        <option>General</option>
+      </select>
+    </div>
+    <div class="field-group"><label>Level</label>
+      <select id="m-level">
+        <option>Foundation</option>
+        <option>Undergraduate</option>
+        <option>Postgraduate</option>
+      </select>
+    </div>`,
+  faculty: `
+    <div class="field-group"><label>Faculty Name</label><input type="text" id="m-name" placeholder="Faculty name"></div>
+    <div class="field-group"><label>Dean</label><input type="text" id="m-dean" placeholder="Dean's name"></div>
+    <div class="field-group"><label>Number of Students</label><input type="number" id="m-students" placeholder="0"></div>
+    <div class="field-group"><label>Number of Programmes</label><input type="number" id="m-programmes" placeholder="0"></div>`,
+  news: `
+    <div class="field-group"><label>Title</label><input type="text" id="m-title" placeholder="News title"></div>
+    <div class="field-group"><label>Category</label>
+      <select id="m-cat">
+        <option>Event</option>
+        <option>Academic</option>
+        <option>Student Life</option>
+        <option>Research</option>
+        <option>General</option>
+      </select>
+    </div>
+    <div class="field-group"><label>Date</label><input type="date" id="m-date"></div>`,
+};
+
+function openModal(type, idx = -1) {
+  modalType = type; modalIdx = idx;
+  modalMode = idx === -1 ? "add" : "edit";
+  const label = type.charAt(0).toUpperCase() + type.slice(1);
+  document.getElementById("modal-title").textContent = (modalMode === "add" ? "Add " : "Edit ") + label;
+  document.getElementById("modal-body").innerHTML = FORMS[type] || "";
+
+  if (modalMode === "edit") {
+    const map = { student: students, course: courses, faculty: faculties, news };
+    const rec = map[type][idx];
+    if (type === "student") {
+      document.getElementById("m-sid").value     = rec.id;
+      document.getElementById("m-name").value    = rec.name;
+      document.getElementById("m-email").value   = rec.email;
+      document.getElementById("m-faculty").value = rec.faculty;
+    } else if (type === "course") {
+      document.getElementById("m-code").value    = rec.code;
+      document.getElementById("m-name").value    = rec.name;
+      document.getElementById("m-faculty").value = rec.faculty;
+      document.getElementById("m-level").value   = rec.level;
+    } else if (type === "faculty") {
+      document.getElementById("m-name").value       = rec.name;
+      document.getElementById("m-dean").value       = rec.dean;
+      document.getElementById("m-students").value   = rec.students;
+      document.getElementById("m-programmes").value = rec.programmes;
+    } else if (type === "news") {
+      document.getElementById("m-title").value = rec.title;
+      document.getElementById("m-cat").value   = rec.category;
+      document.getElementById("m-date").value  = rec.date;
+    }
+  }
+
+  document.getElementById("modal-overlay").style.display = "block";
+  document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("modal-overlay").style.display = "none";
+  document.getElementById("modal").style.display = "none";
+}
+
+function saveModal() {
+  if (modalType === "student") {
+    const sid  = document.getElementById("m-sid").value.trim();
+    const name = document.getElementById("m-name").value.trim();
+    const email= document.getElementById("m-email").value.trim();
+    const fac  = document.getElementById("m-faculty").value;
+    if (!sid || !name || !email) { showToast("Please fill in all fields.", "error"); return; }
+    if (modalMode === "add") {
+      if (students.find(s => s.id === sid)) { showToast("Student ID already exists.", "error"); return; }
+      students.push({ id: sid, name, email, faculty: fac });
+      showToast("Student added successfully.");
+    } else {
+      students[modalIdx] = { id: sid, name, email, faculty: fac };
+      showToast("Student updated successfully.");
+    }
+  } else if (modalType === "course") {
+    const code = document.getElementById("m-code").value.trim();
+    const name = document.getElementById("m-name").value.trim();
+    const fac  = document.getElementById("m-faculty").value;
+    const lvl  = document.getElementById("m-level").value;
+    if (!code || !name) { showToast("Please fill in all fields.", "error"); return; }
+    if (modalMode === "add") {
+      courses.push({ code, name, faculty: fac, level: lvl });
+      showToast("Course added successfully.");
+    } else {
+      courses[modalIdx] = { code, name, faculty: fac, level: lvl };
+      showToast("Course updated successfully.");
+    }
+  } else if (modalType === "faculty") {
+    const name  = document.getElementById("m-name").value.trim();
+    const dean  = document.getElementById("m-dean").value.trim();
+    const stud  = parseInt(document.getElementById("m-students").value) || 0;
+    const prog  = parseInt(document.getElementById("m-programmes").value) || 0;
+    if (!name || !dean) { showToast("Please fill in all fields.", "error"); return; }
+    if (modalMode === "add") {
+      faculties.push({ name, dean, students: stud, programmes: prog });
+      showToast("Faculty added successfully.");
+    } else {
+      faculties[modalIdx] = { name, dean, students: stud, programmes: prog };
+      showToast("Faculty updated successfully.");
+    }
+  } else if (modalType === "news") {
+    const title = document.getElementById("m-title").value.trim();
+    const cat   = document.getElementById("m-cat").value;
+    const date  = document.getElementById("m-date").value;
+    if (!title || !date) { showToast("Please fill in all fields.", "error"); return; }
+    if (modalMode === "add") {
+      news.push({ title, category: cat, date });
+      showToast("News item added successfully.");
+    } else {
+      news[modalIdx] = { title, category: cat, date };
+      showToast("News item updated successfully.");
+    }
+  }
+
+  save(); closeModal(); renderAll();
+}
+
+function editRecord(type, idx) { openModal(type, idx); }
+
+// ── Delete ──
+let delType = "", delIdx = -1;
+
+function deleteRecord(type, idx) {
+  delType = type; delIdx = idx;
+  const labels = { student:"student record", course:"course", faculty:"faculty", enquiry:"enquiry" };
+  document.getElementById("del-msg").textContent =
+    "Are you sure you want to delete this " + (labels[type] || "record") + "? This cannot be undone.";
+  document.getElementById("del-overlay").style.display = "block";
+  document.getElementById("del-modal").style.display = "flex";
+}
+
+function closeDelete() {
+  document.getElementById("del-overlay").style.display = "none";
+  document.getElementById("del-modal").style.display = "none";
+}
+
+function confirmDelete() {
+  const maps = { student: students, course: courses, faculty: faculties, news, enquiry: enquiries };
+  maps[delType].splice(delIdx, 1);
+  save(); closeDelete(); renderAll();
+  showToast("Record deleted successfully.");
+}
+
+// ── Logout ──
+function doAdminLogout() {
+  sessionStorage.removeItem("nsbm_admin");
+  window.location.href = "admin_login.html";
+}
+
+// ── Init ──
+renderAll();
+</script>
+</body>
+</html>
